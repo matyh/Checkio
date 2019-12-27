@@ -13,8 +13,27 @@
 # 
 # END_DESC
 
+
 def checkio(number):
-    return 0
+    count = 0
+    new = 1
+    while number > 0:
+        rem = number - count - new
+        if rem > 0:
+            count += new
+        elif rem == 0:
+            count += new
+            return count
+        elif rem < 0:
+            if number - count <= 0:
+                return count
+            else:
+                return number
+        new += 1
+        number -= count
+
+# 1 stávající holub, 2 noví ale jen 2 jídla
+# jídlo - stávající holubi = zbytek
 
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
@@ -22,3 +41,5 @@ if __name__ == '__main__':
     assert checkio(2) == 1, "2nd example"
     assert checkio(5) == 3, "3rd example"
     assert checkio(10) == 6, "4th example"
+    assert checkio(3) == 2
+    assert checkio(117) == 33
