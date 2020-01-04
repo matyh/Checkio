@@ -57,7 +57,7 @@ def checkio(data: str):
     vectAB = (B[0] - A[0], B[1] - A[1])
     vectBC = (C[0] - B[0], C[1] - B[1])
 
-    # solve for a in 'ax + by + c = 0' where b = 0 as the line passes through [0,0]
+    # get a, b from respective vectors
     aAB = vectAB[0]
     bAB = vectAB[1]
 
@@ -89,10 +89,9 @@ def checkio(data: str):
     return f'(x-{round(x, 2):.5g})^2+(y-{round(y, 2):.5g})^2={round(r, 2):.5g}^2'
 
 
-# print(checkio("(3,7),(6,9),(9,7)"))
-
 #These "asserts" using only for self-checking and not necessary for auto-testing
 if __name__ == '__main__':
     assert checkio("(2,2),(6,2),(2,6)") == "(x-4)^2+(y-4)^2=2.83^2"
     assert checkio("(3,7),(6,9),(9,7)") == "(x-6)^2+(y-5.75)^2=3.25^2"
 
+print(checkio("(7,3),(9,6),(3,6)"))
