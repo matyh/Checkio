@@ -101,8 +101,11 @@ class Army:
             else:
                 pass
 
-    def get_units(self):
+    def get_units(self) -> List:
         return self.units
+
+    def cleanup(self):
+        self.units = [unit for unit in self.units if unit.is_alive]
 
 
 class Battle:
@@ -138,25 +141,11 @@ class Battle:
                 if fighter1 is None:
                     return False
                 continue
-        # attacker_army = army1
-        # idle_army = army2
-        # # zkouska jestli to pujde bez opakovani kodu pro attackera a idle
-        # attacker = attacker_army.get_fighter()
-        # idle = idle_army.get_fighter()
-        # while attacker.is_alive and idle.is_alive:
-        #     attacker.attack_enemy(idle)
-        #     if isinstance(attacker, Lancer):
-        #         idle_army.units[idle_army.get_units().index(idle) + 1].damage(attacker.get_attack() * 0.5)
-        #     if not idle.is_alive:
-        #         idle = idle_army.get_fighter()
-        #         if idle is None and idle in army2.get_units():
-        #             return True
-        #     if not attacker.is_alive:
-        #         attacker = attacker_army.get_fighter()
-        #         if attacker is None and attacker in army1.get_units():
-        #             return False
-        #     attacker, idle = idle, attacker
-        #     attacker_army, idle_army = idle_army, attacker_army
+
+    def straight_fight(self, army1: Army, army2: Army):
+        index = max(len(army1.get_units()), len(army2.get_units()))
+
+
 
 
 def fight(unit_1, unit_2):
