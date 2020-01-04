@@ -68,20 +68,13 @@ def checkio(data: str):
     cAB = -aAB * midAB[0] - bAB * midAB[1]
     cBC = -aBC * midBC[0] - bBC * midBC[1]
 
-    if bAB == 0 or bBC == 0:
-        assert midAB[0] == midBC[0]
-        x = midAB[0]
-    else:
-        x = (bBC * cAB - bAB * cBC) / (bAB * aBC - bBC * aAB)
+    # solve for x in '(-aABx - cAB) / bAB = (-aBCx - cBC) / bBC'
+    x = (bBC * cAB - bAB * cBC) / (bAB * aBC - bBC * aAB)
 
-    if aAB == 0 or aBC == 0:
-        assert midAB[1] == midBC[1]
-        y = midAB[1]
-    else:
-        if bAB != 0:
-            y = (-aAB * x - cAB) / bAB
-        elif bBC != 0:
-            y = (-aBC * x - cBC) / bBC
+    if bAB != 0:
+        y = (-aAB * x - cAB) / bAB
+    elif bBC != 0:
+        y = (-aBC * x - cBC) / bBC
 
     # calculate radius r ( |A[x,y]| = |B[x,y]| = |C[x,y]| )
     r = hypot(A[0] - x, A[1] - y)
@@ -95,3 +88,4 @@ if __name__ == '__main__':
     assert checkio("(3,7),(6,9),(9,7)") == "(x-6)^2+(y-5.75)^2=3.25^2"
 
 print(checkio("(7,3),(9,6),(3,6)"))
+print(checkio("(3,4),(6,6),(4,8)"))
