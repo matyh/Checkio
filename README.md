@@ -1,3 +1,3 @@
 # Checkio
 
-projects from www.checkio.org
+Coding tasks from www.checkio.org
